@@ -18,9 +18,14 @@ then
 else
 
   # get user id
+  USER_ID=$($PSQL "
+    SELECT user_id FROM users WHERE username='$USERNAME'
+  ")
 
   # get games played
-
+  GAMES_PLAYED=$($PSQL "
+    SELECT COUNT(game_id) FROM games WHERE user_id=$USER_ID
+  ")
   # get best game
 
   # welcome user
@@ -63,7 +68,12 @@ else
   done
 
   echo -e "\nYou guessed it in $i tries. The secret number was $WINNING_NUMBER. Nice job!"
+
+  # add game to database
+  $PSQL "INSERT INTO games(user_id, no_of_guess) VALUES($USER_ID, $i)"
+  
 fi
+
 
 : '
 
