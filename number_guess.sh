@@ -34,7 +34,6 @@ fi
 
 # Generate a random number as $WINNING_NUMBER, check variable scope
 WINNING_NUMBER=$[ $RANDOM % 1000 + 0 ]
-echo $WINNING_NUMBER
 
 # Tell user to guess a number
 echo -e "\nGuess the secret number between 1 and 1000:"
@@ -70,8 +69,8 @@ else
   echo -e "\nYou guessed it in $i tries. The secret number was $WINNING_NUMBER. Nice job!"
 
   # add game to database
-  $PSQL "INSERT INTO games(user_id, no_of_guess) VALUES($USER_ID, $i)"
-  
+  $PSQL "INSERT INTO games(user_id, no_of_guesses) VALUES($USER_ID, $i)"
+
 fi
 
 
