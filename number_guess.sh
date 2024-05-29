@@ -50,11 +50,11 @@ else
     if (( $GUESS>$WINNING_NUMBER ))
     then
       # guess again
-      echo -e "Its lower than that, guess again:"
+      echo -e "It's lower than that, guess again:"
 
     else
       # guess again
-      echo -e "Its higher than that, guess again:"
+      echo -e "It's higher than that, guess again:"
     fi
 
     # update guess variable
