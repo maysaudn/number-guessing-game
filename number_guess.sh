@@ -28,7 +28,8 @@ else
 fi
 
 # Generate a random number as $WINNING_NUMBER, check variable scope
-WINNING_NUMBER=$[ $RANDOM % 1000 + 0 ] 
+WINNING_NUMBER=$[ $RANDOM % 1000 + 0 ]
+echo $WINNING_NUMBER
 
 # Tell user to guess a number
 echo -e "\nGuess the secret number between 1 and 1000:"
@@ -43,17 +44,17 @@ then
 
 else
   #initiate for loop
-  for (( i = 0; $GUESS == $WINNING_NUMBER; i++ ))
+  for (( i=1; $GUESS!=$WINNING_NUMBER; i++ ))
   do
-    # If guess is lower than winning number
-    if (( $GUESS < $WINNING_NUMBER ))
+    # If guess is higher than winning number
+    if (( $GUESS>$WINNING_NUMBER ))
     then
       # guess again
-      echo -e "It's lower than that, guess again:"
+      echo -e "Its lower than that, guess again:"
 
     else
       # guess again
-      echo -e "It's higher than that, guess again:"
+      echo -e "Its higher than that, guess again:"
     fi
 
     # update guess variable
@@ -61,7 +62,7 @@ else
 
   done
 
-  echo 
+  echo -e "\nYou guessed it in $i tries. The secret number was $WINNING_NUMBER. Nice job!"
 fi
 
 : '
