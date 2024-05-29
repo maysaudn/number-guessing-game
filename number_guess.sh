@@ -10,7 +10,7 @@ read USERNAME
 if [[ -z $($PSQL "SELECT username FROM users WHERE username='$USERNAME'") ]]
 then
   # add user to database
-  $PSQL "INSERT INTO users(username) VALUES('$USERNAME')"
+  $PSQL "INSERT INTO users(username) VALUES('$USERNAME')" | sed 's/INSERT 0 1//'
 
   # welcome user
   echo "Welcome, $USERNAME! It looks like this is your first time here."
@@ -75,7 +75,7 @@ else
 
   done
   # add game to database
-  $PSQL "INSERT INTO games(user_id, no_of_guesses) VALUES($USER_ID, $i)" | sed '"s/INSERT 0 1//'
+  $PSQL "INSERT INTO games(user_id, no_of_guesses) VALUES($USER_ID, $i)" | sed 's/INSERT 0 1//'
 
   echo -e "You guessed it in $i tries. The secret number was $WINNING_NUMBER. Nice job!"
 
